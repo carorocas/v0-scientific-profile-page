@@ -62,7 +62,7 @@ export function HeroSection() {
             <p className="text-lg leading-relaxed text-foreground">
               Soy un investigador con más de <span className="text-primary font-medium">10 años de experiencia</span> en el 
               estudio de los <span className="text-primary font-medium">mecanismos moleculares del cáncer</span>, con especial 
-              énfasis en el cáncer de páncreas, melanoma uveal y el microambiente tumoral.
+              énfasis en inmunología tumoral y microambiente tumoral.
             </p>
             
             <p className="text-muted-foreground leading-relaxed">
