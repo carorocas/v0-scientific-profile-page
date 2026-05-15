@@ -66,16 +66,11 @@ export function HeroSection() {
             </p>
             
             <p className="text-muted-foreground leading-relaxed">
-              Mi trabajo combina técnicas de biología molecular y celular con aproximaciones bioinformáticas 
-              para identificar nuevos biomarcadores y dianas terapéuticas. He desarrollado modelos preclínicos 
-              y colaborado con equipos internacionales en instituciones como el Hospital del Mar (Barcelona) 
-              y la Universidad de Chicago.
+              Mi trabajo combina técnicas de biología molecular y celular con aproximaciones bioinformáticas para identificar nuevos biomarcadores y dianas terapéuticas. He desarrollado modelos preclínicos y colaborado con equipos interdisciplinarios en instituciones nacionales e internacionales.
             </p>
 
             <p className="text-muted-foreground leading-relaxed">
-              Actualmente lidero proyectos de investigación en el Instituto Nacional de Cancerología de Colombia, 
-              enfocados en caracterización transcripcional y ancestría genética para predicción de respuesta 
-              a quimioterapia en pacientes con leucemia.
+              Actualmente lidero proyectos de investigación en el Instituto Nacional de Cancerología de Colombia, enfocados en la caracterización de mecanismos moleculares tumorales, la biología de fibroblastos asociados al tumor y la infiltración inmunitaria en tumores sólidos.
             </p>
 
             <div className="flex flex-wrap gap-3 pt-4">
