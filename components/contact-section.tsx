@@ -8,7 +8,7 @@ const socialLinks = [
   },
   {
     name: 'ORCID',
-    url: 'https://orcid.org/',
+    url: 'https://orcid.org/0000-0002-7256-0942',
     description: 'Open Researcher and Contributor ID',
   },
   {
