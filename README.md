@@ -68,7 +68,7 @@ Recommended flow:
 
 GitHub Pages is not the recommended deployment target for this repository in its current form. The application is a Next.js/v0 project and is already deployed successfully on Vercel. GitHub Pages can host static exports, but that would require maintaining a separate static-export setup with repository-specific asset paths.
 
-For a professional GitHub presence, this repository should point visitors to the Vercel deployment instead of using GitHub Pages as the public site.
+For a professional GitHub presence, this repository should point visitors to the Vercel deployment instead of using GitHub Pages as the public site. If GitHub Pages remains enabled from `main` and `/root`, the root `index.html` redirects visitors to the live Vercel site.
 
 ## Repository Metadata
 
