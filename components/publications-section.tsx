@@ -1,7 +1,9 @@
 'use client'
 
-import { useState } from 'react'
-import { BookOpen, ExternalLink, ChevronDown, ChevronUp } from 'lucide-react'
+import { useState, useRef } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useInView } from 'framer-motion'
+import { BookOpen, ExternalLink, ChevronDown, ChevronUp, FileText } from 'lucide-react'
 
 const publications = [
   // 2026
@@ -178,6 +180,7 @@ const publications = [
     journal: 'PNAS',
     year: 2018,
     doi: '10.1073/pnas.1722434115',
+    featured: true,
   },
   {
     authors: 'Orozco Castaño CA, Martínez-Bosch N, Vinaixa J, Navarro P et al.',
@@ -220,94 +223,204 @@ const publications = [
   },
 ]
 
+const fadeInUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+}
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.05 }
+  }
+}
+
 export function PublicationsSection() {
   const [showAll, setShowAll] = useState(false)
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   const INITIAL_COUNT = 8
   const displayedPubs = showAll ? publications : publications.slice(0, INITIAL_COUNT)
 
+  // Group publications by year for stats
+  const years = [...new Set(publications.map(p => p.year))].sort((a, b) => b - a)
+  const recentYearCount = publications.filter(p => p.year >= 2024).length
+
   return (
-    <section id="publications" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-border">
-      <div className="max-w-5xl mx-auto">
-        <div className="mb-12">
-          <h2 className="font-serif text-3xl sm:text-4xl font-medium text-foreground mb-4">
-            Publicaciones Científicas
+    <section id="publications" className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-card/30 to-background" />
+      
+      <div className="max-w-6xl mx-auto relative z-10" ref={ref}>
+        {/* Header */}
+        <motion.div 
+          className="text-center mb-12"
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={fadeInUp}
+        >
+          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
+            Producción Científica
+          </span>
+          <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-6">
+            Publicaciones{' '}
+            <span className="bg-gradient-to-r from-primary to-teal-400 bg-clip-text text-transparent">
+              Científicas
+            </span>
           </h2>
-          <p className="text-muted-foreground">
-            {publications.length} artículos en revistas científicas indexadas, ordenados del más reciente al más antiguo.{' '}
-            Ver perfil completo en{' '}
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            {publications.length} artículos en revistas científicas indexadas.{' '}
             <a
               href="https://scienti.minciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0001005944"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:underline"
             >
-              CvLAC
-            </a>.
+              Ver perfil completo en CvLAC
+            </a>
           </p>
-        </div>
+        </motion.div>
 
-        <div className="space-y-3">
-          {displayedPubs.map((pub, index) => {
-            const hasDoi = pub.doi && pub.doi.length > 0
-            const Wrapper = hasDoi ? 'a' : 'div'
-            const wrapperProps = hasDoi
-              ? {
-                  href: `https://doi.org/${pub.doi}`,
-                  target: '_blank',
-                  rel: 'noopener noreferrer',
-                }
-              : {}
+        {/* Stats */}
+        <motion.div 
+          className="grid grid-cols-3 gap-4 mb-12 max-w-xl mx-auto"
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={staggerContainer}
+        >
+          {[
+            { number: publications.length, label: 'Publicaciones' },
+            { number: recentYearCount, label: 'Desde 2024' },
+            { number: years.length, label: 'Años de Actividad' },
+          ].map((stat, index) => (
+            <motion.div 
+              key={index}
+              className="text-center p-4 bg-card/60 backdrop-blur-sm rounded-xl border border-border"
+              variants={fadeInUp}
+            >
+              <div className="text-2xl font-bold bg-gradient-to-r from-primary to-teal-400 bg-clip-text text-transparent">
+                {stat.number}
+              </div>
+              <div className="text-xs text-muted-foreground">{stat.label}</div>
+            </motion.div>
+          ))}
+        </motion.div>
 
-            return (
-              <Wrapper
-                key={index}
-                {...(wrapperProps as object)}
-                className="block p-4 rounded-lg border border-border bg-card hover:border-primary/40 transition-all group"
-              >
-                <div className="flex items-start gap-3">
-                  <BookOpen className="w-4 h-4 mt-1 flex-shrink-0 text-muted-foreground group-hover:text-primary transition-colors" />
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-sm font-medium text-foreground group-hover:text-primary transition-colors leading-snug mb-1">
-                      {pub.title}
-                    </h3>
-                    <p className="text-xs text-muted-foreground mb-2 italic">{pub.authors}</p>
-                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
-                      <span className="font-medium text-primary/80">{pub.journal}</span>
-                      <span className="px-1.5 py-0.5 rounded bg-primary/10 text-primary font-mono font-medium">
-                        {pub.year}
-                      </span>
-                      {hasDoi && (
-                        <span className="font-mono hidden sm:inline">DOI: {pub.doi}</span>
-                      )}
+        {/* Publications List */}
+        <motion.div 
+          className="space-y-3"
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={staggerContainer}
+        >
+          <AnimatePresence>
+            {displayedPubs.map((pub, index) => {
+              const hasDoi = pub.doi && pub.doi.length > 0
+              const isFeatured = 'featured' in pub && pub.featured
+
+              return (
+                <motion.div
+                  key={index}
+                  variants={fadeInUp}
+                  layout
+                >
+                  {hasDoi ? (
+                    <a
+                      href={`https://doi.org/${pub.doi}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`block p-5 rounded-xl border transition-all duration-300 group ${
+                        isFeatured 
+                          ? 'bg-gradient-to-r from-primary/10 via-card/80 to-card/60 border-primary/30 hover:border-primary/50' 
+                          : 'bg-card/60 backdrop-blur-sm border-border hover:border-primary/40'
+                      }`}
+                    >
+                      <PublicationContent pub={pub} isFeatured={isFeatured} hasDoi={hasDoi} />
+                    </a>
+                  ) : (
+                    <div className="block p-5 rounded-xl border bg-card/60 backdrop-blur-sm border-border transition-all duration-300 group">
+                      <PublicationContent pub={pub} isFeatured={false} hasDoi={hasDoi} />
                     </div>
-                  </div>
-                  {hasDoi && (
-                    <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
                   )}
-                </div>
-              </Wrapper>
-            )
-          })}
-        </div>
+                </motion.div>
+              )
+            })}
+          </AnimatePresence>
+        </motion.div>
 
+        {/* Show More/Less Button */}
         {publications.length > INITIAL_COUNT && (
-          <button
-            onClick={() => setShowAll(!showAll)}
-            className="mt-8 flex items-center gap-2 mx-auto text-sm text-muted-foreground hover:text-foreground transition-colors border border-border hover:border-primary/40 px-5 py-2.5 rounded-full"
+          <motion.div 
+            className="flex justify-center mt-10"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ delay: 0.5 }}
           >
-            {showAll ? (
-              <>
-                Ver menos <ChevronUp className="w-4 h-4" />
-              </>
-            ) : (
-              <>
-                Ver todas las publicaciones ({publications.length}) <ChevronDown className="w-4 h-4" />
-              </>
-            )}
-          </button>
+            <motion.button
+              onClick={() => setShowAll(!showAll)}
+              className="flex items-center gap-2 px-6 py-3 text-sm font-medium text-muted-foreground hover:text-foreground bg-card/60 backdrop-blur-sm border border-border hover:border-primary/40 rounded-full transition-all duration-300"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              {showAll ? (
+                <>
+                  Ver menos <ChevronUp className="w-4 h-4" />
+                </>
+              ) : (
+                <>
+                  Ver todas las publicaciones ({publications.length}) <ChevronDown className="w-4 h-4" />
+                </>
+              )}
+            </motion.button>
+          </motion.div>
         )}
       </div>
     </section>
+  )
+}
+
+function PublicationContent({ pub, isFeatured, hasDoi }: { 
+  pub: typeof publications[0], 
+  isFeatured: boolean, 
+  hasDoi: boolean 
+}) {
+  return (
+    <div className="flex items-start gap-4">
+      <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
+        isFeatured 
+          ? 'bg-gradient-to-br from-primary to-teal-400' 
+          : 'bg-secondary'
+      }`}>
+        {isFeatured ? (
+          <FileText className="w-5 h-5 text-white" />
+        ) : (
+          <BookOpen className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+        )}
+      </div>
+      <div className="flex-1 min-w-0">
+        <div className="flex items-start justify-between gap-3">
+          <h3 className="text-sm font-medium text-foreground group-hover:text-primary transition-colors leading-snug">
+            {pub.title}
+          </h3>
+          {hasDoi && (
+            <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-all flex-shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          )}
+        </div>
+        <p className="text-xs text-muted-foreground mt-1 italic">{pub.authors}</p>
+        <div className="flex flex-wrap items-center gap-2 mt-2">
+          <span className="text-xs font-medium text-primary/80">{pub.journal}</span>
+          <span className="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-medium">
+            {pub.year}
+          </span>
+          {isFeatured && (
+            <span className="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-400 text-xs font-medium">
+              Destacado
+            </span>
+          )}
+        </div>
+      </div>
+    </div>
   )
 }

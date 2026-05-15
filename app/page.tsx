@@ -8,10 +8,12 @@ import { ProjectsSection } from '@/components/projects-section'
 import { ServicesSection } from '@/components/services-section'
 import { ContactSection } from '@/components/contact-section'
 import { Footer } from '@/components/footer'
+import { AnimatedBackground } from '@/components/animated-background'
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen relative">
+      <AnimatedBackground />
       <Navigation />
       <HeroSection />
       <AboutSection />
