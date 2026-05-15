@@ -1,35 +1,102 @@
-# v0-scientific-profile-page
+# Scientific Profile Landing Page
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v0.app).
+Academic landing page for Carlos Alberto Orozco Castano, focused on cancer biology, bioinformatics, tumor microenvironment research, publications, projects, collaborations, and contact information.
 
-## Built with v0
+**Live site:** [https://v0-twertgwstwstw.vercel.app/#contact](https://v0-twertgwstwstw.vercel.app/#contact)
 
-This repository is linked to a [v0](https://v0.app) project. You can continue developing by visiting the link below -- start new chats to make changes, and v0 will push commits directly to this repo. Every merge to `main` will automatically deploy.
+## Overview
 
-[Continue working on v0 →](https://v0.app/chat/projects/prj_qSKtKGzw9KyjE4SnfhOmY6J2bnaG)
+This project was initially generated with [v0](https://v0.app) and is maintained as a Next.js application. The production deployment is hosted on Vercel, which is the recommended platform for this codebase because it supports Next.js defaults without extra static-export configuration.
 
-## Getting Started
+## Technologies
 
-First, run the development server:
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS
+- Radix UI primitives
+- Framer Motion
+- Vercel Analytics
+- pnpm
+
+## Local Development
+
+Requirements:
+
+- Node.js 22 or newer
+- pnpm 10 or newer
+
+Install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
+```
+
+Run the development server:
+
+```bash
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Build the production app:
 
-## Learn More
+```bash
+pnpm build
+```
 
-To learn more, take a look at the following resources:
+Start a production build locally:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [v0 Documentation](https://v0.app/docs) - learn about v0 and how to use it.
+```bash
+pnpm start
+```
 
-<a href="https://v0.app/chat/api/kiro/clone/carorocas/v0-scientific-profile-page" alt="Open in Kiro"><img src="https://pdgvvgmkdvyeydso.public.blob.vercel-storage.com/open%20in%20kiro.svg?sanitize=true" /></a>
+## Deployment
+
+The primary deployment target is Vercel:
+
+[https://v0-twertgwstwstw.vercel.app/#contact](https://v0-twertgwstwstw.vercel.app/#contact)
+
+Recommended flow:
+
+1. Keep `main` as the stable branch.
+2. Push reviewed changes to `main`.
+3. Let Vercel build and deploy the Next.js application automatically.
+
+## GitHub Pages
+
+GitHub Pages is not the recommended deployment target for this repository in its current form. The application is a Next.js/v0 project and is already deployed successfully on Vercel. GitHub Pages can host static exports, but that would require maintaining a separate static-export setup with repository-specific asset paths.
+
+For a professional GitHub presence, this repository should point visitors to the Vercel deployment instead of using GitHub Pages as the public site.
+
+## Repository Metadata
+
+Suggested GitHub repository description:
+
+```text
+Academic scientific profile landing page built with Next.js, v0, Tailwind CSS, and Vercel.
+```
+
+Suggested repository website URL:
+
+```text
+https://v0-twertgwstwstw.vercel.app/#contact
+```
+
+## Project Structure
+
+```text
+app/          Next.js App Router entry points and global styles
+components/   Landing page sections and reusable UI components
+hooks/        Shared React hooks
+lib/          Utility functions
+public/       Static assets and icons
+styles/       Additional global styles
+```
+
+## Notes
+
+- The branch `main` is the stable default branch.
+- The GitHub Actions workflow validates that the Next.js app builds successfully.
+- Vercel should remain the canonical deployment unless the project is intentionally converted to a static export later.
