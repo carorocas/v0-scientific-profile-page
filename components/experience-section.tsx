@@ -9,6 +9,13 @@ const experiences = [
     type: 'current',
   },
   {
+    position: 'Profesor Ocasional',
+    institution: 'Universidad Nacional de Colombia',
+    period: '2023 - Presente',
+    description: 'Profesor del Doctorado en Oncología. Formación en investigación oncológica y metodologías avanzadas en bioinformática aplicada al cáncer.',
+    type: 'current',
+  },
+  {
     position: 'Investigador / Docente',
     institution: 'Fundación Universitaria del Área Andina',
     period: '2021 - Presente',
