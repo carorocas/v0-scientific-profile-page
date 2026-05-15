@@ -59,8 +59,8 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h3 className="font-medium text-foreground">Correo Profesional</h3>
-                  <a href="mailto:corozco@cacne.gov.co" className="text-sm text-primary hover:text-primary/80 transition-colors">
-                    corozco@cacne.gov.co
+                  <a href="mailto:corozco@cancer.gov.co" className="text-sm text-primary hover:text-primary/80 transition-colors">
+                    corozco@cancer.gov.co
                   </a>
                 </div>
               </div>
