@@ -16,6 +16,11 @@ const socialLinks = [
     url: 'https://www.researchgate.net/profile/Carlos-Alberto-Orozco-Castano?ev=hdr_xprf',
     description: 'Perfil en ResearchGate',
   },
+  {
+    name: 'GitHub',
+    url: 'https://github.com/carorocas',
+    description: 'Repositorios y proyectos de código',
+  },
 ]
 
 export function ContactSection() {
