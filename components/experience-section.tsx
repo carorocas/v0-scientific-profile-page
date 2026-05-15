@@ -3,7 +3,7 @@ import { Briefcase, Calendar } from 'lucide-react'
 const experiences = [
   {
     position: 'Investigador',
-    institution: 'Instituto Nacional de Cancerología ESE',
+    institution: 'Instituto Nacional de Cancerología',
     period: 'Dic 2023 - Presente',
     description: 'Asesorar, liderar y capacitar para el diseño y ejecución de proyectos de investigación en control del cáncer, empleando metodologías bioinformáticas y bioestadísticas.',
     type: 'current',

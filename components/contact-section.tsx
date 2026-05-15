@@ -39,7 +39,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h3 className="font-medium text-foreground">Institución</h3>
-                  <p className="text-sm text-muted-foreground">Instituto Nacional de Cancerología ESE</p>
+                  <p className="text-sm text-muted-foreground">Instituto Nacional de Cancerología</p>
                 </div>
               </div>
 
@@ -58,8 +58,22 @@ export function ContactSection() {
                   <Mail className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-foreground">Email</h3>
-                  <p className="text-sm text-muted-foreground">Disponible a través de CvLAC</p>
+                  <h3 className="font-medium text-foreground">Correo Profesional</h3>
+                  <a href="mailto:corozco@cacne.gov.co" className="text-sm text-primary hover:text-primary/80 transition-colors">
+                    corozco@cacne.gov.co
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Mail className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-medium text-foreground">Correo Personal</h3>
+                  <a href="mailto:seifer121@gmail.com" className="text-sm text-primary hover:text-primary/80 transition-colors">
+                    seifer121@gmail.com
+                  </a>
                 </div>
               </div>
             </div>
