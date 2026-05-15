@@ -12,9 +12,9 @@ const socialLinks = [
     description: 'Open Researcher and Contributor ID',
   },
   {
-    name: 'Scopus',
-    url: 'https://www.scopus.com/',
-    description: 'Perfil de autor en Scopus',
+    name: 'ResearchGate',
+    url: 'https://www.researchgate.net/profile/Carlos-Alberto-Orozco-Castano?ev=hdr_xprf',
+    description: 'Perfil en ResearchGate',
   },
 ]
 
