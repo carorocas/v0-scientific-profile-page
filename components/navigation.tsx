@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Menu, X, FlaskConical, BookOpen, GraduationCap, Briefcase, Award, Mail } from 'lucide-react'
+import { Menu, X, FlaskConical, BookOpen, GraduationCap, Briefcase, Award, Mail, Lightbulb } from 'lucide-react'
 
 const navItems = [
   { label: 'Sobre Mí', href: '#about', icon: FlaskConical },
@@ -9,6 +9,7 @@ const navItems = [
   { label: 'Experiencia', href: '#experience', icon: Briefcase },
   { label: 'Publicaciones', href: '#publications', icon: BookOpen },
   { label: 'Proyectos', href: '#projects', icon: Award },
+  { label: 'Servicios', href: '#services', icon: Lightbulb },
   { label: 'Contacto', href: '#contact', icon: Mail },
 ]
 
